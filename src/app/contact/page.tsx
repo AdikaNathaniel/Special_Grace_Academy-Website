@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import type { IconType } from "react-icons";
 import { FaEnvelope, FaLocationDot, FaPhone } from "react-icons/fa6";
 import ContactForm from "@/components/ContactForm";
-import SocialLinks from "@/components/SocialLinks";
 import { PageHero, SectionHeading } from "@/components/ui";
 import { school } from "@/lib/site";
 
@@ -97,28 +95,6 @@ export default function ContactPage() {
                   Get directions
                 </a>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Social + admissions */}
-      <section className="bg-grace-900">
-        <div className="container-x grid items-center gap-10 py-16 md:grid-cols-2">
-          <div>
-            <p className="eyebrow text-gold-500">Follow us</p>
-            <h2 className="mt-3 font-display text-3xl font-extrabold text-white">See school life as it happens</h2>
-            <p className="mt-3 text-grace-100">Events, achievements and everyday moments, shared on our social channels.</p>
-            <SocialLinks className="mt-6" />
-          </div>
-          <div className="rounded-3xl bg-gold-500 p-8 text-grace-900">
-            <h2 className="font-display text-2xl font-extrabold">Ready to join us?</h2>
-            <p className="mt-2 text-grace-900/80">Admissions are open for Preschool, Primary and JHS.</p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link href="/admissions#apply" className="btn-purple">Apply Now</Link>
-              <Link href="/admissions" className="btn border-2 border-grace-900 text-grace-900 hover:bg-grace-900 hover:text-white">
-                How to apply
-              </Link>
             </div>
           </div>
         </div>
