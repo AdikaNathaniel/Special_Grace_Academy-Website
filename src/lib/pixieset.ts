@@ -39,7 +39,7 @@ export async function getPixiesetPhotos({ collection, gallery }: PixiesetGallery
     } catch {
       break; // Show whatever loaded rather than failing the page.
     }
-    if (data.status !== "success") break;
+    if (data.status !== "success" || !data.content) break;
 
     for (const p of JSON.parse(data.content) as RawPhoto[]) {
       // Pixieset caps "xlarge" at 1600px on the long edge; keep the original aspect ratio.
@@ -54,4 +54,15 @@ export async function getPixiesetPhotos({ collection, gallery }: PixiesetGallery
     if (data.isLastPage) break;
   }
   return photos;
+}
+
+// The gallery shown on https://specialgraceacademy.pixieset.com/studentexperience/
+const studentExperience: PixiesetGallery = { collection: "studentexperience", gallery: "highlights" };
+
+/** Landscape Student Experience photos for page banners, starting at `offset` so pages don't all open on the same shot. */
+export async function getHeroPhotos(offset = 0): Promise<string[]> {
+  const photos = await getPixiesetPhotos(studentExperience, "");
+  const landscape = photos.filter((p) => (p.width ?? 0) > (p.height ?? 0)).map((p) => p.src);
+  const start = landscape.length ? offset % landscape.length : 0;
+  return [...landscape.slice(start), ...landscape.slice(0, start)];
 }

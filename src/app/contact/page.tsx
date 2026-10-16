@@ -3,6 +3,7 @@ import type { IconType } from "react-icons";
 import { FaEnvelope, FaLocationDot, FaPhone } from "react-icons/fa6";
 import ContactForm from "@/components/ContactForm";
 import { PageHero, SectionHeading } from "@/components/ui";
+import { getHeroPhotos } from "@/lib/pixieset";
 import { school } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -18,7 +19,8 @@ const cards: { icon: IconType; label: string; value: string; action: string; hre
   { icon: FaEnvelope, label: "Email us", value: school.email, action: "Send an email", href: `mailto:${school.email}` },
 ];
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const heroPhotos = await getHeroPhotos(24);
   return (
     <>
       <PageHero
@@ -26,6 +28,7 @@ export default function ContactPage() {
         title="We'd love to hear from you."
         intro="Questions about admissions, fees or a school visit? Reach out and our team will get back to you."
         image="/images/student-smile.jpg"
+        images={heroPhotos}
       />
 
       {/* Contact cards overlap the banner */}

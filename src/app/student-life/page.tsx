@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { CtaBand, PageHero, SectionHeading } from "@/components/ui";
+import { getHeroPhotos } from "@/lib/pixieset";
 
 export const metadata: Metadata = {
   title: "Student Life",
@@ -54,7 +55,8 @@ const activities = [
   { title: "Excursions", text: "Learning at Ghana's historic sites, including the James Town Lighthouse." },
 ];
 
-export default function StudentLifePage() {
+export default async function StudentLifePage() {
+  const heroPhotos = await getHeroPhotos(0);
   return (
     <>
       <PageHero
@@ -62,6 +64,7 @@ export default function StudentLifePage() {
         title="Learning that goes beyond the classroom."
         intro="Field trips, celebrations, competitions and clubs help our students grow in confidence and character."
         image="/images/trip-group-steps.jpg"
+        images={heroPhotos}
       />
 
       <section className="py-20 sm:py-28">

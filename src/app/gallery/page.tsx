@@ -3,6 +3,7 @@ import path from "node:path";
 import type { Metadata } from "next";
 import Lightbox, { type Photo } from "@/components/Lightbox";
 import { PageHero } from "@/components/ui";
+import { getHeroPhotos } from "@/lib/pixieset";
 
 export const metadata: Metadata = {
   title: "Gallery",
@@ -19,7 +20,8 @@ function getPhotos(): Photo[] {
     .map((f) => ({ src: `/images/gallery/${f}`, alt: "Special Grace Academy school life" }));
 }
 
-export default function GalleryPage() {
+export default async function GalleryPage() {
+  const heroPhotos = await getHeroPhotos(16);
   const photos = getPhotos();
   return (
     <>
@@ -28,6 +30,7 @@ export default function GalleryPage() {
         title="Moments of learning and growth."
         intro="Classroom life, field trips, celebrations and special visits."
         image="/images/art-week.jpg"
+        images={heroPhotos}
       />
       <section className="py-16 sm:py-24">
         <div className="container-x">

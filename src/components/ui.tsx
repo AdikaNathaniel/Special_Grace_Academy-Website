@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import BackgroundVideo from "@/components/BackgroundVideo";
+import Slideshow from "@/components/Slideshow";
 import type { NewsPost } from "@/lib/news";
 import { formatDate } from "@/lib/news";
 
@@ -10,6 +11,7 @@ export function PageHero({
   title,
   intro,
   image,
+  images,
   youtubeId,
   videoStart,
 }: {
@@ -17,6 +19,8 @@ export function PageHero({
   title: ReactNode;
   intro?: string;
   image?: string;
+  /** Background photos that slowly crossfade every 30 seconds; `image` is used when this is empty. */
+  images?: string[];
   /** Full-strength, muted, looping YouTube video behind the title, which sits centred near the bottom. */
   youtubeId?: string;
   /** Seconds into the video to begin playing. */
@@ -38,8 +42,12 @@ export function PageHero({
 
   return (
     <section className="relative isolate overflow-hidden bg-grace-900">
-      {image && (
-        <Image src={image} alt="" fill preload sizes="100vw" className="-z-10 object-cover opacity-30" />
+      {images && images.length > 0 ? (
+        <div className="absolute inset-0 -z-10 opacity-30">
+          <Slideshow images={images} alt="" interval={30_000} fade={2500} sizes="100vw" preload />
+        </div>
+      ) : (
+        image && <Image src={image} alt="" fill preload sizes="100vw" className="-z-10 object-cover opacity-30" />
       )}
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-grace-950/90 via-grace-900/70 to-grace-900/30" />
       <div className="container-x py-16 sm:py-24">

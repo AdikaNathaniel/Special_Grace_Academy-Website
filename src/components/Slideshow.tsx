@@ -3,17 +3,25 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-/** Crossfades through images, advancing every `interval` ms. Only the current and next images are mounted. */
+/**
+ * Crossfades through images, advancing every `interval` ms over `fade` ms.
+ * Only the previous (fading out), current and next (preloading) images are mounted.
+ */
 export default function Slideshow({
   images,
   alt,
   interval = 5000,
+  fade = 1000,
   sizes,
+  preload,
 }: {
   images: string[];
   alt: string;
   interval?: number;
+  fade?: number;
   sizes: string;
+  /** Preload the first image (for slideshows above the fold). */
+  preload?: boolean;
 }) {
   const [index, setIndex] = useState(0);
 
@@ -23,20 +31,24 @@ export default function Slideshow({
     return () => clearInterval(id);
   }, [images.length, interval]);
 
+  const prev = (index - 1 + images.length) % images.length;
   const next = (index + 1) % images.length;
 
   return (
     <>
       {images.map((src, i) =>
-        // Keep the next image mounted (hidden) so it is already loaded when its turn comes.
-        i === index || i === next ? (
+        // The previous image stays mounted while it fades out; the next is mounted (hidden) so it is
+        // already loaded when its turn comes.
+        i === index || i === prev || i === next ? (
           <Image
             key={src}
             src={src}
             alt={i === index ? alt : ""}
             fill
             sizes={sizes}
-            className={`object-cover transition-opacity duration-1000 ${i === index ? "opacity-100" : "opacity-0"}`}
+            preload={preload && i === 0}
+            style={{ transitionDuration: `${fade}ms` }}
+            className={`object-cover transition-opacity ease-in-out ${i === index ? "opacity-100" : "opacity-0"}`}
           />
         ) : null,
       )}

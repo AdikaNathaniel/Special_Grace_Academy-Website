@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { NewsCard, PageHero } from "@/components/ui";
+import { getHeroPhotos } from "@/lib/pixieset";
 import { news } from "@/lib/news";
 
 export const metadata: Metadata = {
@@ -7,7 +8,8 @@ export const metadata: Metadata = {
   description: "Updates, events and announcements from Special Grace Academy.",
 };
 
-export default function NewsPage() {
+export default async function NewsPage() {
+  const heroPhotos = await getHeroPhotos(8);
   return (
     <>
       <PageHero
@@ -15,6 +17,7 @@ export default function NewsPage() {
         title="Updates from our school community."
         intro="Events, achievements and announcements from Special Grace Academy."
         image="/images/police-visit-group.png"
+        images={heroPhotos}
       />
       <section className="py-20 sm:py-28">
         <div className="container-x grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
