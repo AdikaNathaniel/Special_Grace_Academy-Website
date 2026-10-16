@@ -1,26 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import BackgroundVideo from "@/components/BackgroundVideo";
 import type { NewsPost } from "@/lib/news";
 import { formatDate } from "@/lib/news";
-
-/** Muted, looping YouTube video that covers its (relative, isolate) parent. */
-export function BackgroundVideo({ youtubeId, start }: { youtubeId: string; start?: number }) {
-  return (
-    <div className="pointer-events-none absolute inset-0 -z-10 motion-reduce:hidden" style={{ containerType: "size" }}>
-      <iframe
-        title=""
-        aria-hidden
-        tabIndex={-1}
-        src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=0&playsinline=1&modestbranding=1&rel=0&disablekb=1${start ? `&start=${start}` : ""}`}
-        allow="autoplay; encrypted-media"
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-0"
-        // Scale the 16:9 video to cover the area whatever its shape.
-        style={{ width: "max(100cqw, 177.78cqh)", height: "max(100cqh, 56.25cqw)" }}
-      />
-    </div>
-  );
-}
 
 export function PageHero({
   eyebrow,

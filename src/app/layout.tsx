@@ -28,6 +28,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${heading.variable} ${body.variable} h-full antialiased`}>
+      <head>
+        {/* Start connecting to YouTube while the page loads so the background videos begin sooner. */}
+        <link rel="preconnect" href="https://www.youtube-nocookie.com" />
+        <link rel="preconnect" href="https://www.youtube.com" />
+        <link rel="preconnect" href="https://i.ytimg.com" />
+        <link rel="preconnect" href="https://www.google.com" />
+      </head>
       <body className="flex min-h-full flex-col font-sans">
         <Header />
         <main className="flex-1">{children}</main>

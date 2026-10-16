@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BackgroundVideo, CtaBand, NewsCard, QuoteBubble, SectionHeading } from "@/components/ui";
+import BackgroundVideo from "@/components/BackgroundVideo";
+import { CtaBand, NewsCard, QuoteBubble, SectionHeading } from "@/components/ui";
 import { news } from "@/lib/news";
 import { programs, school, testimonial } from "@/lib/site";
 
