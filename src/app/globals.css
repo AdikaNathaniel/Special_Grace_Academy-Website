@@ -1,26 +1,54 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Brand colours taken from the school crest. */
+@theme {
+  --color-grace-50: #f4f1fb;
+  --color-grace-100: #e6e0f5;
+  --color-grace-200: #cbbfe9;
+  --color-grace-500: #4a3394;
+  --color-grace-700: #2d1a6b;
+  --color-grace-900: #20124d;
+  --color-grace-950: #140b33;
+  --color-gold-100: #fff6cc;
+  --color-gold-300: #ffe26a;
+  --color-gold-400: #ffd633;
+  --color-gold-500: #ffce10;
+  --color-gold-600: #e0b200;
+  --color-cream: #faf8f4;
+
+  --font-sans: var(--font-body);
+  --font-display: var(--font-heading);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: var(--color-grace-950);
+}
+
+@utility container-x {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+@utility eyebrow {
+  @apply font-display text-xs font-bold tracking-[0.2em] text-gold-600 uppercase;
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-display text-sm font-bold tracking-wide transition focus-visible:outline-2 focus-visible:outline-offset-2;
+}
+
+@utility btn-gold {
+  @apply btn bg-gold-500 text-grace-900 hover:bg-gold-400 focus-visible:outline-gold-500;
+}
+
+@utility btn-purple {
+  @apply btn bg-grace-900 text-white hover:bg-grace-700 focus-visible:outline-grace-900;
+}
+
+@utility btn-outline-light {
+  @apply btn border-2 border-white/70 text-white hover:bg-white hover:text-grace-900;
 }
