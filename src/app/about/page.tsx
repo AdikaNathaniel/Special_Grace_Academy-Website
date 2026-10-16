@@ -63,7 +63,6 @@ export default function AboutPage() {
       <section className="py-20 sm:py-28">
         <div className="container-x grid items-center gap-12 lg:grid-cols-5">
           <div className="relative mx-auto w-full max-w-sm lg:col-span-2">
-            <div className="absolute -right-4 -bottom-4 h-full w-full rounded-3xl bg-gold-500" aria-hidden />
             <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
               <Image
                 src={proprietress.photo}
