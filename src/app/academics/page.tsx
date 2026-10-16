@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { CtaBand, PageHero, SectionHeading } from "@/components/ui";
+import { getHeroPhotos } from "@/lib/pixieset";
 import { headmasterMessage, leaderByRole, programs } from "@/lib/site";
 
 const headmaster = leaderByRole("Headmaster");
@@ -11,17 +12,30 @@ export const metadata: Metadata = {
   description: "Preschool, Primary and Junior High School programmes, plus cadets, music, entrepreneurship and STEM.",
 };
 
-export default function AcademicsPage() {
+const heroPhrases = [
+  "A rigorous, faith-based education at every stage.",
+  "From play-based preschool to BECE success.",
+  "Strong foundations from the very first day.",
+  "Confident readers and writers in Lower Primary.",
+  "Critical thinkers in Upper Primary.",
+  "Preparing JHS students for the BECE and beyond.",
+  "Hands-on learning in STEM and robotics.",
+  "Music, cadets and entrepreneurship too.",
+  "Teachers who nurture every learner.",
+  "Developing minds and character together.",
+];
+
+export default async function AcademicsPage() {
+  const heroPhotos = await getHeroPhotos("academics");
   const levels = programs.filter((p) => p.kind === "level");
   const enrichment = programs.filter((p) => p.kind === "enrichment");
 
   return (
     <>
       <PageHero
-        eyebrow="Academics"
-        title="A rigorous, faith-based education at every stage."
-        intro="From play-based preschool to BECE preparation in JHS, our departments work together to develop minds and character."
+        phrases={heroPhrases}
         image="/images/primary-computer.jpg"
+        images={heroPhotos}
       />
 
       <section className="py-20 sm:py-28">

@@ -56,14 +56,15 @@ export async function getPixiesetPhotos({ collection, gallery }: PixiesetGallery
   return photos;
 }
 
-// Page banners each show their own hand-picked photos (real photos of different activities, not flyers or
-// STEM sessions), so no two pages ever show the same shot. They come from these galleries on
+// Page banners each show their own hand-picked photos (real photos, not flyers), so no two pages ever show the
+// same shot. Academics uses classroom photos, mostly from STEAM sessions; the others show a mix of activities. They come from these galleries on
 // https://specialgraceacademy.pixieset.com/studentexperience/ and play in the order listed.
 // Each entry is the hash in the photo's Pixieset URL.
 const heroGalleries: PixiesetGallery[] = [
   { collection: "studentexperience", gallery: "eventsexcursions" },
   { collection: "studentexperience", gallery: "carolservice" },
   { collection: "studentexperience", gallery: "successstoriestestimonials" },
+  { collection: "studentexperience", gallery: "steam" },
 ];
 
 const heroPicks = {
@@ -129,6 +130,20 @@ const heroPicks = {
     "66102b3d3b5e0f5b8bd082ac6c8db33b", // Young carollers
     "79586c83d580ec41b0cac822bff38756", // Nativity reading
     "11ec35c52bed9a878511d8e0845ade9e", // Carol service performance
+  ],
+  academics: [
+    "a7c48a5b16c5bc4c9c6c02c281e54ee7", // Pupils with the model house they built
+    "5f24d85ec08af41e28009f29f6b02825", // Writing in class
+    "058609d1451e9ac7d2166e59236184d8", // Hands up in class
+    "74f1d42de328c953899eee4825a6a564", // Lesson at the whiteboard
+    "7f1b29f757e01ffabab13edb023a901c", // Working on laptops
+    "8c05e9f2c6833e7f43aa823a9ffda7d4", // Science experiment
+    "b8a0b15ebb47f33e7c6a15a1b3617415", // Showing a finished project
+    "c4d0806e79a85f3c731b1fda0b9de634", // Presenting to the class
+    "077506657bb7ac287561a5e030793974", // One-to-one help from a teacher
+    "a11de899567f3ac221d34a36185a1039", // Group work
+    "a4dd31f916a1354bb4bea24eb0d1fd04", // Making music on a computer
+    "a39e16b915a635dff66effa78e107567", // Guest lesson
   ],
 } satisfies Record<string, string[]>;
 
