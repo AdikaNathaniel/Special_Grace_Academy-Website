@@ -52,8 +52,8 @@ export function PageHero({
           background(false)
         )}
         <div className="container-x pb-12 text-center sm:pb-16">
-          {/* One line at every width: the font scales with the screen instead of wrapping. */}
-          <h1 className="font-display text-[clamp(0.75rem,3vw,2.5rem)] font-extrabold whitespace-nowrap text-white [text-shadow:0_2px_16px_rgb(0_0_0/0.6)]">
+          {/* Phones: a readable size, wrapping onto two lines. Wider screens: one line, scaling with the screen. */}
+          <h1 className="font-display text-2xl leading-tight font-extrabold text-balance text-white [text-shadow:0_2px_16px_rgb(0_0_0/0.6)] sm:text-[clamp(1rem,3vw,2.5rem)] sm:whitespace-nowrap">
             {phrases ? <Typewriter phrases={phrases} /> : title}
           </h1>
         </div>

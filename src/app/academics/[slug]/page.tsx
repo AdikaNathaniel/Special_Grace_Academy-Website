@@ -16,8 +16,8 @@ async function ProgramPhotos({ gallery, title }: { gallery: PixiesetGallery; tit
       <div className="container-x">
         <SectionHeading
           eyebrow="Gallery"
-          // One line at every width: the font scales with the screen instead of wrapping.
-          title={<span className="block text-[clamp(0.75rem,3.2vw,2.25rem)] whitespace-nowrap">{title} in action</span>}
+          // Phones: normal heading size, wrapping. Wider screens: one line, scaling with the screen.
+          title={<span className="block sm:text-[clamp(1rem,3.2vw,2.25rem)] sm:whitespace-nowrap">{title} in action</span>}
         />
         <div className="mt-12">
           <Lightbox photos={photos} pageSize={24} />

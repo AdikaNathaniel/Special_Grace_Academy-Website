@@ -91,7 +91,7 @@ export default function Header() {
             <span className="block font-display text-base font-extrabold tracking-wide text-grace-900 sm:text-lg">
               SPECIAL GRACE ACADEMY
             </span>
-            <span className="block text-[11px] font-semibold tracking-[0.18em] text-gold-600 uppercase">
+            <span className="block text-[10px] font-semibold tracking-[0.1em] whitespace-nowrap text-gold-600 uppercase min-[400px]:text-[11px] min-[400px]:tracking-[0.18em]">
               {school.motto}
             </span>
           </span>

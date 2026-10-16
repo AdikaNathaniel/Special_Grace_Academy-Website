@@ -21,8 +21,8 @@ export default function Home() {
       <section className="relative isolate flex min-h-[calc(100svh-4.5rem)] items-end overflow-hidden bg-grace-950">
         <BackgroundVideo youtubeId={school.heroVideo.id} start={school.heroVideo.start} />
         <div className="container-x pb-12 text-center sm:pb-16">
-          {/* One line at every width: the font scales with the screen instead of wrapping. */}
-          <h1 className="font-display text-[clamp(0.75rem,3.2vw,2.75rem)] font-extrabold whitespace-nowrap text-white [text-shadow:0_2px_16px_rgb(0_0_0/0.6)]">
+          {/* Phones: a readable size, wrapping onto two lines. Wider screens: one line, scaling with the screen. */}
+          <h1 className="font-display text-2xl leading-tight font-extrabold text-balance text-white [text-shadow:0_2px_16px_rgb(0_0_0/0.6)] sm:text-[clamp(1rem,3.2vw,2.75rem)] sm:whitespace-nowrap">
             Raising brilliant, <span className="text-gold-500">God-fearing</span> children.
           </h1>
         </div>

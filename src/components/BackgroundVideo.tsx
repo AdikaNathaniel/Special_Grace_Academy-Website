@@ -31,12 +31,11 @@ export default function BackgroundVideo({ youtubeId, start }: { youtubeId: strin
     window.addEventListener("message", onMessage);
     iframe.addEventListener("load", listen);
     listen();
-    // Fallback: if the player never reports in, show it anyway.
-    const fallback = setTimeout(() => setPlaying(true), 8000);
+    // If the player never reports that it is playing (e.g. a phone blocking autoplay in low-power mode), the
+    // thumbnail stays up rather than revealing a paused player with its play button.
     return () => {
       window.removeEventListener("message", onMessage);
       iframe.removeEventListener("load", listen);
-      clearTimeout(fallback);
     };
   }, [youtubeId]);
 
@@ -49,6 +48,8 @@ export default function BackgroundVideo({ youtubeId, start }: { youtubeId: strin
     playsinline: "1",
     modestbranding: "1",
     rel: "0",
+    cc_load_policy: "0", // no captions
+    iv_load_policy: "3", // no annotations
     disablekb: "1",
     enablejsapi: "1",
     ...(start ? { start: String(start) } : {}),
@@ -72,8 +73,9 @@ export default function BackgroundVideo({ youtubeId, start }: { youtubeId: strin
         tabIndex={-1}
         src={`https://www.youtube-nocookie.com/embed/${youtubeId}?${params}`}
         allow="autoplay; encrypted-media"
-        // scale-125 pushes YouTube's title bar, logo and "More videos" strip outside the visible area.
-        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-125 border-0 transition-opacity duration-700 motion-reduce:hidden ${
+        // scale-125 pushes YouTube's title bar, logo and "More videos" strip outside the visible area. On portrait
+        // (phone) screens, scale further so the captions YouTube's mobile player shows on muted videos are cropped too.
+        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-125 border-0 portrait:scale-150 transition-opacity duration-700 motion-reduce:hidden ${
           playing ? "opacity-100" : "opacity-0"
         }`}
         // Scale the 16:9 video to cover the area whatever its shape.
