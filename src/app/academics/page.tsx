@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { CtaBand, PageHero, SectionHeading } from "@/components/ui";
-import { headmasterMessage, programs } from "@/lib/site";
+import { headmasterMessage, leaderByRole, programs } from "@/lib/site";
+
+const headmaster = leaderByRole("Headmaster");
 
 export const metadata: Metadata = {
   title: "Academics",
@@ -26,13 +28,23 @@ export default function AcademicsPage() {
         <div className="container-x grid gap-10 lg:grid-cols-3">
           <div>
             <SectionHeading eyebrow="Headmaster's message" title="Welcome to our departments" />
+            <div className="relative mt-8 aspect-[4/5] max-w-xs overflow-hidden rounded-3xl">
+              <Image
+                src={headmaster.photo}
+                alt={`${headmaster.name}, ${headmaster.role}`}
+                fill
+                sizes="320px"
+                className="object-cover"
+                style={{ objectPosition: headmaster.focus }}
+              />
+            </div>
           </div>
           <div className="lg:col-span-2">
             {headmasterMessage.map((p, i) => (
               <p key={i} className="mb-5 text-lg leading-relaxed text-grace-950/75">{p}</p>
             ))}
-            <p className="font-display font-bold text-grace-900">Mr. Benjamin Osei Boateng</p>
-            <p className="text-sm text-gold-600">Headmaster</p>
+            <p className="font-display font-bold text-grace-900">{headmaster.name}</p>
+            <p className="text-sm text-gold-600">{headmaster.role}</p>
           </div>
         </div>
       </section>

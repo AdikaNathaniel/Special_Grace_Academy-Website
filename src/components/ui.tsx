@@ -14,7 +14,7 @@ export function PageHero({
   videoStart,
 }: {
   eyebrow?: string;
-  title: string;
+  title: ReactNode;
   intro?: string;
   image?: string;
   /** Full-strength, muted, looping YouTube video behind the title, which sits centred near the bottom. */

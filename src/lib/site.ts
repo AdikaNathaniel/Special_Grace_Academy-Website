@@ -79,16 +79,25 @@ export const values = [
   },
 ];
 
-export type Leader = { name: string; role: string; group: "management" | "academics" };
+export type Leader = {
+  name: string;
+  role: string;
+  group: "management" | "academics";
+  photo: string;
+  /** CSS object-position keeping the face in frame when the photo is cropped. */
+  focus: string;
+};
 
 export const leaders: Leader[] = [
-  { name: "Apostle Hannah Etsiakoh", role: "Proprietress", group: "management" },
-  { name: "Bishop Thomas Etsiakoh", role: "Director", group: "management" },
-  { name: "Samuel Etsiakoh", role: "Director of Operations & Strategy", group: "management" },
-  { name: "Mr. Benjamin Osei Boateng", role: "Headmaster", group: "academics" },
-  { name: "Ms. Lydia", role: "Assistant Headmistress", group: "academics" },
-  { name: "Mr. Bismark", role: "Head of Academics", group: "academics" },
+  { name: "Apostle Hannah Etsiakoh", role: "Proprietress", group: "management", photo: "/images/faculty/proprietress.jpg", focus: "52% 18%" },
+  { name: "Bishop Thomas Etsiakoh", role: "Director", group: "management", photo: "/images/faculty/director.jpg", focus: "50% 20%" },
+  { name: "Samuel Etsiakoh", role: "Director of Operations & Strategy", group: "management", photo: "/images/faculty/director-operations.jpg", focus: "50% 20%" },
+  { name: "Mr. Benjamin Osei Boateng", role: "Headmaster", group: "academics", photo: "/images/faculty/headmaster.jpg", focus: "45% 20%" },
+  { name: "Ms. Lydia", role: "Assistant Headmistress", group: "academics", photo: "/images/faculty/assistant-headmistress.jpg", focus: "50% 30%" },
+  { name: "Mr. Bismark", role: "Head of Academics", group: "academics", photo: "/images/faculty/head-academics.jpg", focus: "50% 15%" },
 ];
+
+export const leaderByRole = (role: string) => leaders.find((l) => l.role === role)!;
 
 export const proprietressMessage = [
   "Welcome to Special Grace Academy. We are committed to providing a nurturing and intellectually stimulating environment where every child receives a comprehensive education.",

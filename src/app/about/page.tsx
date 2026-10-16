@@ -1,27 +1,24 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { CtaBand, PageHero, SectionHeading } from "@/components/ui";
-import { leaders, mission, proprietressMessage, school, values, vision } from "@/lib/site";
+import { leaderByRole, leaders, mission, proprietressMessage, school, values, vision } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About Us",
   description: "Our vision, mission, values and leadership at Special Grace Academy.",
 };
 
-function initials(name: string) {
-  return name
-    .replace(/^(Apostle|Bishop|Mr\.|Ms\.|Mrs\.|Dr\.)\s+/, "")
-    .split(" ")
-    .map((w) => w[0])
-    .slice(0, 2)
-    .join("");
-}
+const proprietress = leaderByRole("Proprietress");
 
 export default function AboutPage() {
   return (
     <>
       <PageHero
-        title="Faith, excellence and character since 2009."
+        title={
+          <>
+            Faith, excellence <span className="text-gold-500">and character</span> since 2009.
+          </>
+        }
         youtubeId={school.aboutVideo.id}
         videoStart={school.aboutVideo.start}
       />
@@ -65,16 +62,26 @@ export default function AboutPage() {
 
       <section className="py-20 sm:py-28">
         <div className="container-x grid items-center gap-12 lg:grid-cols-5">
-          <div className="relative mx-auto aspect-square w-full max-w-sm lg:col-span-2">
-            <Image src="/images/logo-full.jpg" alt="Special Grace Academy crest" fill sizes="384px" className="rounded-3xl object-contain" />
+          <div className="relative mx-auto w-full max-w-sm lg:col-span-2">
+            <div className="absolute -right-4 -bottom-4 h-full w-full rounded-3xl bg-gold-500" aria-hidden />
+            <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
+              <Image
+                src={proprietress.photo}
+                alt={`${proprietress.name}, ${proprietress.role}`}
+                fill
+                sizes="384px"
+                className="object-cover"
+                style={{ objectPosition: proprietress.focus }}
+              />
+            </div>
           </div>
           <div className="lg:col-span-3">
             <SectionHeading eyebrow="Welcome message" title="From our Proprietress" />
             {proprietressMessage.map((p, i) => (
               <p key={i} className="mt-5 text-lg leading-relaxed text-grace-950/75">{p}</p>
             ))}
-            <p className="mt-6 font-display font-bold text-grace-900">Apostle Hannah Etsiakoh</p>
-            <p className="text-sm text-gold-600">Proprietress</p>
+            <p className="mt-6 font-display font-bold text-grace-900">{proprietress.name}</p>
+            <p className="text-sm text-gold-600">{proprietress.role}</p>
           </div>
         </div>
       </section>
@@ -91,12 +98,21 @@ export default function AboutPage() {
                 {leaders
                   .filter((l) => l.group === group)
                   .map((l) => (
-                    <div key={l.name} className="rounded-2xl bg-white p-8 text-center shadow-sm ring-1 ring-grace-100">
-                      <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-grace-900 font-display text-2xl font-extrabold text-gold-500 ring-4 ring-gold-500/40">
-                        {initials(l.name)}
+                    <div key={l.name} className="group overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-grace-100 transition hover:-translate-y-1 hover:shadow-lg">
+                      <div className="relative aspect-[4/5] overflow-hidden bg-grace-100">
+                        <Image
+                          src={l.photo}
+                          alt={`${l.name}, ${l.role}`}
+                          fill
+                          sizes="(min-width: 640px) 33vw, 100vw"
+                          className="object-cover transition duration-500 group-hover:scale-105"
+                          style={{ objectPosition: l.focus }}
+                        />
                       </div>
-                      <p className="mt-5 font-display text-lg font-bold text-grace-900">{l.name}</p>
-                      <p className="text-sm font-semibold text-gold-600">{l.role}</p>
+                      <div className="p-6 text-center">
+                        <p className="font-display text-lg font-bold text-grace-900">{l.name}</p>
+                        <p className="mt-1 text-sm font-semibold text-gold-600">{l.role}</p>
+                      </div>
                     </div>
                   ))}
               </div>
