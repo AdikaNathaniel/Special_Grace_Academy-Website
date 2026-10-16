@@ -22,7 +22,7 @@ const heroPhrases = [
 ];
 
 export default async function NewsPage() {
-  const heroPhotos = await getHeroPhotos(8);
+  const heroPhotos = await getHeroPhotos("news");
   return (
     <>
       <PageHero

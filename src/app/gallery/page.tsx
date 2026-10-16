@@ -34,7 +34,7 @@ const heroPhrases = [
 ];
 
 export default async function GalleryPage() {
-  const heroPhotos = await getHeroPhotos(16);
+  const heroPhotos = await getHeroPhotos("gallery");
   const photos = getPhotos();
   return (
     <>

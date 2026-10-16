@@ -33,7 +33,7 @@ const heroPhrases = [
 ];
 
 export default async function ContactPage() {
-  const heroPhotos = await getHeroPhotos(24);
+  const heroPhotos = await getHeroPhotos("contact");
   return (
     <>
       <PageHero

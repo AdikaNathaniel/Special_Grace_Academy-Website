@@ -69,7 +69,7 @@ const heroPhrases = [
 ];
 
 export default async function StudentLifePage() {
-  const heroPhotos = await getHeroPhotos(0);
+  const heroPhotos = await getHeroPhotos("student-life");
   return (
     <>
       <PageHero
