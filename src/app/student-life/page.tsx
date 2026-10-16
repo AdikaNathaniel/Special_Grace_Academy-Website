@@ -55,14 +55,25 @@ const activities = [
   { title: "Excursions", text: "Learning at Ghana's historic sites, including the James Town Lighthouse." },
 ];
 
+const heroPhrases = [
+  "Learning that goes beyond the classroom.",
+  "Field trips that bring history to life.",
+  "Celebrating our heritage together.",
+  "Clubs where every talent can shine.",
+  "Building confidence, one day at a time.",
+  "Cadets learning discipline and service.",
+  "Young scientists exploring STEM.",
+  "Music, art and creativity every week.",
+  "Friendships that last a lifetime.",
+  "Growing in faith, character and joy.",
+];
+
 export default async function StudentLifePage() {
   const heroPhotos = await getHeroPhotos(0);
   return (
     <>
       <PageHero
-        eyebrow="Student life"
-        title="Learning that goes beyond the classroom."
-        intro="Field trips, celebrations, competitions and clubs help our students grow in confidence and character."
+        phrases={heroPhrases}
         image="/images/trip-group-steps.jpg"
         images={heroPhotos}
       />

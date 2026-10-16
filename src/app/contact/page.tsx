@@ -19,20 +19,30 @@ const cards: { icon: IconType; label: string; value: string; action: string; hre
   { icon: FaEnvelope, label: "Email us", value: school.email, action: "Send an email", href: `mailto:${school.email}` },
 ];
 
+const heroPhrases = [
+  "We'd love to hear from you.",
+  "Come and visit our campus.",
+  "Questions about admissions? Ask us.",
+  "Book a school tour today.",
+  "Our doors are always open.",
+  "Let's talk about your child's future.",
+  "Find us in Tantra Hills, Accra.",
+  "Call, email or drop by.",
+  "Your questions are welcome here.",
+  "Start your child's journey with us.",
+];
+
 export default async function ContactPage() {
   const heroPhotos = await getHeroPhotos(24);
   return (
     <>
       <PageHero
-        eyebrow="Contact"
-        title="We'd love to hear from you."
-        intro="Questions about admissions, fees or a school visit? Reach out and our team will get back to you."
+        phrases={heroPhrases}
         image="/images/student-smile.jpg"
         images={heroPhotos}
       />
 
-      {/* Contact cards overlap the banner */}
-      <section className="relative z-10 -mt-12 sm:-mt-16">
+      <section className="pt-12 sm:pt-16">
         <div className="container-x grid gap-5 md:grid-cols-3">
           {cards.map(({ icon: Icon, label, value, action, href, external }) => (
             <a

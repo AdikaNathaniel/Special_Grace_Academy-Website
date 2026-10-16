@@ -20,15 +20,26 @@ function getPhotos(): Photo[] {
     .map((f) => ({ src: `/images/gallery/${f}`, alt: "Special Grace Academy school life" }));
 }
 
+const heroPhrases = [
+  "Moments of learning and growth.",
+  "Smiles from every classroom.",
+  "Field trips captured in pictures.",
+  "Celebrations we'll always remember.",
+  "Creativity on full display.",
+  "Little hands, big ideas.",
+  "Friendship, faith and fun.",
+  "Snapshots of everyday wonder.",
+  "Our story, one photo at a time.",
+  "Memories made at Special Grace.",
+];
+
 export default async function GalleryPage() {
   const heroPhotos = await getHeroPhotos(16);
   const photos = getPhotos();
   return (
     <>
       <PageHero
-        eyebrow="Gallery"
-        title="Moments of learning and growth."
-        intro="Classroom life, field trips, celebrations and special visits."
+        phrases={heroPhrases}
         image="/images/art-week.jpg"
         images={heroPhotos}
       />

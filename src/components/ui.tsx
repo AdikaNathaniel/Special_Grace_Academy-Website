@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import BackgroundVideo from "@/components/BackgroundVideo";
 import Slideshow from "@/components/Slideshow";
+import Typewriter from "@/components/Typewriter";
 import type { NewsPost } from "@/lib/news";
 import { formatDate } from "@/lib/news";
 
@@ -12,28 +13,47 @@ export function PageHero({
   intro,
   image,
   images,
+  phrases,
   youtubeId,
   videoStart,
 }: {
   eyebrow?: string;
-  title: ReactNode;
+  title?: ReactNode;
   intro?: string;
   image?: string;
   /** Background photos that slowly crossfade every 30 seconds; `image` is used when this is empty. */
   images?: string[];
+  /** Full-height banner with these phrases typed out in turn, centred near the bottom, in place of `title`. */
+  phrases?: string[];
   /** Full-strength, muted, looping YouTube video behind the title, which sits centred near the bottom. */
   youtubeId?: string;
   /** Seconds into the video to begin playing. */
   videoStart?: number;
 }) {
-  if (youtubeId) {
+  const background =
+    images && images.length > 0 ? (
+      <div className="absolute inset-0 -z-10 opacity-30">
+        <Slideshow images={images} alt="" interval={30_000} fade={2500} sizes="100vw" preload />
+      </div>
+    ) : (
+      image && <Image src={image} alt="" fill preload sizes="100vw" className="-z-10 object-cover opacity-30" />
+    );
+
+  if (youtubeId || phrases) {
     return (
       <section className="relative isolate flex min-h-[calc(100svh-4.5rem)] items-end overflow-hidden bg-grace-900">
-        <BackgroundVideo youtubeId={youtubeId} start={videoStart} />
+        {youtubeId ? (
+          <BackgroundVideo youtubeId={youtubeId} start={videoStart} />
+        ) : (
+          <>
+            {background}
+            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-grace-950/80 via-grace-900/30 to-transparent" />
+          </>
+        )}
         <div className="container-x pb-12 text-center sm:pb-16">
           {/* One line at every width: the font scales with the screen instead of wrapping. */}
           <h1 className="font-display text-[clamp(0.75rem,3vw,2.5rem)] font-extrabold whitespace-nowrap text-white [text-shadow:0_2px_16px_rgb(0_0_0/0.6)]">
-            {title}
+            {phrases ? <Typewriter phrases={phrases} /> : title}
           </h1>
         </div>
       </section>
@@ -42,13 +62,7 @@ export function PageHero({
 
   return (
     <section className="relative isolate overflow-hidden bg-grace-900">
-      {images && images.length > 0 ? (
-        <div className="absolute inset-0 -z-10 opacity-30">
-          <Slideshow images={images} alt="" interval={30_000} fade={2500} sizes="100vw" preload />
-        </div>
-      ) : (
-        image && <Image src={image} alt="" fill preload sizes="100vw" className="-z-10 object-cover opacity-30" />
-      )}
+      {background}
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-grace-950/90 via-grace-900/70 to-grace-900/30" />
       <div className="container-x py-16 sm:py-24">
         {eyebrow && <p className="eyebrow text-gold-500">{eyebrow}</p>}

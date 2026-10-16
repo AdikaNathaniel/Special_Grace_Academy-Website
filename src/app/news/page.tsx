@@ -8,14 +8,25 @@ export const metadata: Metadata = {
   description: "Updates, events and announcements from Special Grace Academy.",
 };
 
+const heroPhrases = [
+  "Updates from our school community.",
+  "Celebrating our students' achievements.",
+  "Events, visits and special days.",
+  "Stories from our classrooms.",
+  "Proud moments worth sharing.",
+  "What's happening at Special Grace.",
+  "Announcements for parents and families.",
+  "Highlights from across the school year.",
+  "Our community in the spotlight.",
+  "Every milestone, every success.",
+];
+
 export default async function NewsPage() {
   const heroPhotos = await getHeroPhotos(8);
   return (
     <>
       <PageHero
-        eyebrow="News & events"
-        title="Updates from our school community."
-        intro="Events, achievements and announcements from Special Grace Academy."
+        phrases={heroPhrases}
         image="/images/police-visit-group.png"
         images={heroPhotos}
       />
