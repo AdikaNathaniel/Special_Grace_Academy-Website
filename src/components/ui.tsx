@@ -21,7 +21,7 @@ export function PageHero({
   title?: ReactNode;
   intro?: string;
   image?: string;
-  /** Background photos that slowly crossfade every 30 seconds; `image` is used when this is empty. */
+  /** Background photos that slowly crossfade every 10 seconds; `image` is used when this is empty. */
   images?: string[];
   /** Full-height banner with these phrases typed out in turn, centred near the bottom, in place of `title`. */
   phrases?: string[];
@@ -33,7 +33,7 @@ export function PageHero({
   const background =
     images && images.length > 0 ? (
       <div className="absolute inset-0 -z-10 opacity-30">
-        <Slideshow images={images} alt="" interval={30_000} fade={2500} sizes="100vw" preload />
+        <Slideshow images={images} alt="" interval={10_000} fade={2500} sizes="100vw" preload />
       </div>
     ) : (
       image && <Image src={image} alt="" fill preload sizes="100vw" className="-z-10 object-cover opacity-30" />
