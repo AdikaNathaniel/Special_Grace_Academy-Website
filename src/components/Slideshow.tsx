@@ -37,8 +37,8 @@ export default function Slideshow({
   return (
     <>
       {images.map((src, i) =>
-        // The previous image stays mounted while it fades out; the next is mounted (hidden) so it is
-        // already loaded when its turn comes.
+        // The current image fades in on top of the previous one, which stays fully visible underneath so the
+        // background never shows through mid-fade. The next is mounted (hidden) so it is already loaded.
         i === index || i === prev || i === next ? (
           <Image
             key={src}
@@ -48,7 +48,9 @@ export default function Slideshow({
             sizes={sizes}
             preload={preload && i === 0}
             style={{ transitionDuration: `${fade}ms` }}
-            className={`object-cover transition-opacity ease-in-out ${i === index ? "opacity-100" : "opacity-0"}`}
+            className={`object-cover transition-opacity ease-in-out ${
+              i === index ? "z-10 opacity-100" : i === prev ? "opacity-100" : "opacity-0"
+            }`}
           />
         ) : null,
       )}

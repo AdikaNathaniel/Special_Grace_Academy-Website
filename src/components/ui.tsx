@@ -30,13 +30,16 @@ export function PageHero({
   /** Seconds into the video to begin playing. */
   videoStart?: number;
 }) {
-  const background =
+  // `dim` fades the photos into the violet background for banners with text over the left side.
+  const background = (dim: boolean) =>
     images && images.length > 0 ? (
-      <div className="absolute inset-0 -z-10 opacity-30">
+      <div className={`absolute inset-0 -z-10 ${dim ? "opacity-30" : ""}`}>
         <Slideshow images={images} alt="" interval={10_000} fade={2500} sizes="100vw" preload />
       </div>
     ) : (
-      image && <Image src={image} alt="" fill preload sizes="100vw" className="-z-10 object-cover opacity-30" />
+      image && (
+        <Image src={image} alt="" fill preload sizes="100vw" className={`-z-10 object-cover ${dim ? "opacity-30" : ""}`} />
+      )
     );
 
   if (youtubeId || phrases) {
@@ -45,10 +48,8 @@ export function PageHero({
         {youtubeId ? (
           <BackgroundVideo youtubeId={youtubeId} start={videoStart} />
         ) : (
-          <>
-            {background}
-            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-grace-950/80 via-grace-900/30 to-transparent" />
-          </>
+          // Full-strength photos, like the video banners; the title's shadow keeps it readable.
+          background(false)
         )}
         <div className="container-x pb-12 text-center sm:pb-16">
           {/* One line at every width: the font scales with the screen instead of wrapping. */}
@@ -62,7 +63,7 @@ export function PageHero({
 
   return (
     <section className="relative isolate overflow-hidden bg-grace-900">
-      {background}
+      {background(true)}
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-grace-950/90 via-grace-900/70 to-grace-900/30" />
       <div className="container-x py-16 sm:py-24">
         {eyebrow && <p className="eyebrow text-gold-500">{eyebrow}</p>}
