@@ -224,6 +224,16 @@ export const programs: Program[] = [
   },
 ];
 
+// Home page statistics, counted up on screen. `value` is the number; `suffix` follows it.
+export const stats = [
+  // Recomputed at each build, so it stays current.
+  { value: new Date().getFullYear() - school.founded, suffix: "+", label: "Years of excellence" },
+  // From the school's "Why choose us" flyer on Pixieset.
+  { value: 100, suffix: "%", label: "BECE pass rate" },
+  { value: programs.filter((p) => p.kind === "level").length, suffix: "", label: "Departments" },
+  { value: programs.filter((p) => p.kind === "enrichment").length, suffix: "", label: "Enrichment programmes" },
+];
+
 export const testimonial = {
   quote: "Special Grace Academy shaped my future.",
   by: "Alumna",
