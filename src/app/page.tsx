@@ -113,8 +113,8 @@ export default function Home() {
           <h3 className="mt-20 text-center font-display text-2xl font-extrabold text-balance text-grace-900 sm:text-3xl">
             Hear what our parents have to say about the impact of our school
           </h3>
-          {/* Portrait videos side by side at every width, sized so both fit on screen together. */}
-          <div className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-4 sm:gap-8">
+          {/* Portrait videos side by side at every width, each filling half the page width. */}
+          <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-8">
             {school.parentVideos.map((v) => (
               <YouTubeEmbed key={v.id} id={v.id} title={v.title} className="aspect-[1080/1662]" />
             ))}
