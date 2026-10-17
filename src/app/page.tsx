@@ -101,13 +101,14 @@ export default function Home() {
       {/* Video testimonial */}
       <section className="py-20 sm:py-28">
         <div className="container-x">
-          <SectionHeading
-            center
-            eyebrow="Testimonials"
-            title="Hear from our alumni"
-            intro="Listen as one of our proud alumni shares her heartfelt story — from the challenges she faced to the encouragement and excellence she experienced at Special Grace Academy. Her journey is a true reflection of the impact our school makes in the lives of its students."
-          />
-          <div className="mx-auto mt-12 aspect-video max-w-4xl overflow-hidden rounded-3xl bg-grace-900 shadow-xl ring-1 ring-grace-100">
+          <SectionHeading center eyebrow="Testimonials" title="Hear from our alumni" />
+          {/* The intro and video both run the full width of the page content. */}
+          <p className="mt-6 text-center text-lg leading-relaxed text-grace-950/70">
+            Listen as one of our proud alumni shares her heartfelt story — from the challenges she faced to the encouragement and
+            excellence she experienced at Special Grace Academy. Her journey is a true reflection of the impact our school makes in
+            the lives of its students.
+          </p>
+          <div className="mt-12 aspect-video overflow-hidden rounded-3xl bg-grace-900 shadow-xl ring-1 ring-grace-100">
             <iframe
               src={`https://www.youtube-nocookie.com/embed/${school.testimonialVideo.id}?rel=0`}
               title={school.testimonialVideo.title}
