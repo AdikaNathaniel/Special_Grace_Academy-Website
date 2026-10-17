@@ -44,7 +44,7 @@ export function PageHero({
 
   if (youtubeId || phrases) {
     return (
-      <section className="relative isolate flex min-h-[calc(100svh-4.5rem)] items-end overflow-hidden bg-grace-900">
+      <section data-no-reveal className="relative isolate flex min-h-[calc(100svh-4.5rem)] items-end overflow-hidden bg-grace-900">
         {youtubeId ? (
           <BackgroundVideo youtubeId={youtubeId} start={videoStart} />
         ) : (
@@ -62,7 +62,7 @@ export function PageHero({
   }
 
   return (
-    <section className="relative isolate overflow-hidden bg-grace-900">
+    <section data-no-reveal className="relative isolate overflow-hidden bg-grace-900">
       {background(true)}
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-grace-950/90 via-grace-900/70 to-grace-900/30" />
       <div className="container-x py-16 sm:py-24">

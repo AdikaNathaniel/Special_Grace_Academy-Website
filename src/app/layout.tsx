@@ -3,6 +3,7 @@ import { Montserrat, Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ScrollReveal from "@/components/ScrollReveal";
 import { school } from "@/lib/site";
 
 const heading = Montserrat({
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <ScrollReveal />
       </body>
     </html>
   );

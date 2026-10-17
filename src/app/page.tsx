@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate flex min-h-[calc(100svh-4.5rem)] items-end overflow-hidden bg-grace-950">
+      <section data-no-reveal className="relative isolate flex min-h-[calc(100svh-4.5rem)] items-end overflow-hidden bg-grace-950">
         <BackgroundVideo youtubeId={school.heroVideo.id} start={school.heroVideo.start} />
         <div className="container-x pb-12 text-center sm:pb-16">
           {/* Phones: a readable size, wrapping onto two lines. Wider screens: one line, scaling with the screen. */}

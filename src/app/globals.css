@@ -24,6 +24,12 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Scroll-in animation for photos and cards (see components/ScrollReveal.tsx): they wait above their spot, then drop in. */
+[data-reveal="pending"] {
+  opacity: 0;
+  transform: translateY(-3rem) scale(0.96);
+}
+
 body {
   background: #ffffff;
   color: var(--color-grace-950);
