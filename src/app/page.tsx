@@ -21,6 +21,23 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Statistics */}
+      <section className="pt-16 sm:pt-20">
+        <div className="container-x">
+          {/* Statistics: four across on wide screens, two by two on phones. Each counts up as it scrolls into view. */}
+          <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
+            {stats.map((s) => (
+              <div key={s.label} className="rounded-3xl bg-grace-900 px-4 py-8 text-center shadow-xl sm:px-6 sm:py-10">
+                <p className="font-display text-4xl font-extrabold text-gold-500 sm:text-5xl">
+                  <CountUp value={s.value} suffix={s.suffix} />
+                </p>
+                <p className="mt-2 text-sm font-semibold text-grace-100 sm:text-base">{s.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* About */}
       <section className="py-20 sm:py-28">
         <div className="container-x grid items-center gap-12 lg:grid-cols-2">
@@ -118,18 +135,6 @@ export default function Home() {
           <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-8">
             {school.parentVideos.map((v) => (
               <YouTubeEmbed key={v.id} id={v.id} title={v.title} className="aspect-[1080/1662]" />
-            ))}
-          </div>
-
-          {/* Statistics: four across on wide screens, two by two on phones. Each counts up as it scrolls into view. */}
-          <div className="mt-20 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
-            {stats.map((s) => (
-              <div key={s.label} className="rounded-3xl bg-grace-900 px-4 py-8 text-center shadow-xl sm:px-6 sm:py-10">
-                <p className="font-display text-4xl font-extrabold text-gold-500 sm:text-5xl">
-                  <CountUp value={s.value} suffix={s.suffix} />
-                </p>
-                <p className="mt-2 text-sm font-semibold text-grace-100 sm:text-base">{s.label}</p>
-              </div>
             ))}
           </div>
         </div>

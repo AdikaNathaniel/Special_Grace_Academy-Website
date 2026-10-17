@@ -22,8 +22,15 @@ export default function BackgroundVideo({ youtubeId, start }: { youtubeId: strin
       try {
         const msg = JSON.parse(e.data);
         const state = msg.event === "onStateChange" ? msg.info : msg.info?.playerState;
-        // YouTube flashes its title bar for a moment after playback starts, so reveal just after that.
-        if (state === 1) setTimeout(() => setPlaying(true), 1500);
+        if (state === 1) {
+          // YouTube switches on automatic captions for muted videos; turn them off (the cc_load_policy param alone
+          // doesn't). Both module names are used across player versions.
+          for (const name of ["captions", "cc"]) {
+            iframe.contentWindow?.postMessage(JSON.stringify({ event: "command", func: "unloadModule", args: [name] }), "*");
+          }
+          // YouTube flashes its title bar for a moment after playback starts, so reveal just after that.
+          setTimeout(() => setPlaying(true), 1500);
+        }
       } catch {}
     };
     const listen = () => iframe.contentWindow?.postMessage(JSON.stringify({ event: "listening", id: youtubeId }), "*");
