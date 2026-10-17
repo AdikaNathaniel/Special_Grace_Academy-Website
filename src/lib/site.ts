@@ -18,6 +18,7 @@ export const school = {
   mapQuery: "Champion Divine Clinic, Tantra Hills, Accra",
   heroVideo: { id: "X3YWT9ctXII", start: 4 }, // 2025 Graduation Ceremony, from 0:04
   aboutVideo: { id: "rxxXF7LB0LE", start: 248 }, // 2024 Graduation Ceremony, from 4:08
+  testimonialVideo: { id: "TovommDi4kA", title: "A past student shares her story" }, // Home page testimonial
   social: [
     { label: "Facebook", href: "https://www.facebook.com/specialgraceacademy" },
     { label: "Instagram", href: "https://www.instagram.com/specialgraceacademy/" },

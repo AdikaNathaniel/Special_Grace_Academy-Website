@@ -1,18 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import BackgroundVideo from "@/components/BackgroundVideo";
-import { CtaBand, NewsCard, QuoteBubble, SectionHeading } from "@/components/ui";
-import { news } from "@/lib/news";
+import { CtaBand, QuoteBubble, SectionHeading } from "@/components/ui";
 import { programs, school, testimonial } from "@/lib/site";
 
 const levels = programs.filter((p) => p.kind === "level");
-
-const moments = [
-  { src: "/images/art-week.jpg", alt: "Pupils drawing together during art week" },
-  { src: "/images/trip-nkrumah-mausoleum.jpg", alt: "Students at the Kwame Nkrumah Memorial Park" },
-  { src: "/images/library-award.jpg", alt: "Students receiving certificates at the Ghana Library Authority" },
-  { src: "/images/face-paint.jpg", alt: "A pupil with face paint smiling at the camera" },
-];
 
 export default function Home() {
   return (
@@ -106,36 +98,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* News */}
+      {/* Video testimonial */}
       <section className="py-20 sm:py-28">
         <div className="container-x">
-          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <SectionHeading eyebrow="News & events" title="What's happening at school" />
-            <Link href="/news" className="font-display text-sm font-bold text-grace-500 hover:text-grace-900">
-              All news →
-            </Link>
-          </div>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {news.slice(0, 3).map((post) => (
-              <NewsCard key={post.slug} post={post} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Gallery teaser */}
-      <section className="bg-cream py-20 sm:py-28">
-        <div className="container-x">
-          <SectionHeading center eyebrow="Student life" title="Moments of learning and growth" />
-          <div className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4">
-            {moments.map((m, i) => (
-              <div key={m.src} className={`relative overflow-hidden rounded-2xl ${i % 2 ? "aspect-[3/4] lg:mt-10" : "aspect-[3/4]"}`}>
-                <Image src={m.src} alt={m.alt} fill sizes="(min-width: 1024px) 25vw, 50vw" className="object-cover" />
-              </div>
-            ))}
-          </div>
-          <div className="mt-12 text-center">
-            <Link href="/gallery" className="btn-purple">View the Gallery</Link>
+          <SectionHeading
+            center
+            eyebrow="Testimonials"
+            title="Hear from our alumni"
+            intro="Listen as one of our proud alumni shares her heartfelt story — from the challenges she faced to the encouragement and excellence she experienced at Special Grace Academy. Her journey is a true reflection of the impact our school makes in the lives of its students."
+          />
+          <div className="mx-auto mt-12 aspect-video max-w-4xl overflow-hidden rounded-3xl bg-grace-900 shadow-xl ring-1 ring-grace-100">
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${school.testimonialVideo.id}?rel=0`}
+              title={school.testimonialVideo.title}
+              loading="lazy"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+              className="h-full w-full border-0"
+            />
           </div>
         </div>
       </section>
