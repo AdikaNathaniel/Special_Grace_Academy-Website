@@ -19,6 +19,11 @@ export const school = {
   heroVideo: { id: "X3YWT9ctXII", start: 4 }, // 2025 Graduation Ceremony, from 0:04
   aboutVideo: { id: "rxxXF7LB0LE", start: 248 }, // 2024 Graduation Ceremony, from 4:08
   testimonialVideo: { id: "TovommDi4kA", title: "A past student shares her story" }, // Home page testimonial
+  // Home page parent testimonials, shown side by side (left, right). Both are portrait (1080x1662) phone videos.
+  parentVideos: [
+    { id: "7qD54RMbwiA", title: "Parent testimonial: Mrs. Sarah Boakye" },
+    { id: "bPLGv7017rg", title: "Parent testimonial" },
+  ],
   social: [
     { label: "Facebook", href: "https://www.facebook.com/specialgraceacademy" },
     { label: "Instagram", href: "https://www.instagram.com/specialgraceacademy/" },

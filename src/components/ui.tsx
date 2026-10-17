@@ -190,3 +190,20 @@ export function QuoteBubble({
     </figure>
   );
 }
+
+/** A YouTube video that plays in place. It loads only when scrolled near, and suggests no other channels' videos. */
+export function YouTubeEmbed({ id, title, className = "" }: { id: string; title: string; className?: string }) {
+  return (
+    <div className={`overflow-hidden rounded-3xl bg-grace-900 shadow-xl ring-1 ring-grace-100 ${className}`}>
+      <iframe
+        src={`https://www.youtube-nocookie.com/embed/${id}?rel=0`}
+        title={title}
+        loading="lazy"
+        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerPolicy="strict-origin-when-cross-origin"
+        allowFullScreen
+        className="h-full w-full border-0"
+      />
+    </div>
+  );
+}

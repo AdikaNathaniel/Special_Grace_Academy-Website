@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import BackgroundVideo from "@/components/BackgroundVideo";
-import { CtaBand, QuoteBubble, SectionHeading } from "@/components/ui";
+import { CtaBand, QuoteBubble, SectionHeading, YouTubeEmbed } from "@/components/ui";
 import { programs, school, testimonial } from "@/lib/site";
 
 const levels = programs.filter((p) => p.kind === "level");
@@ -108,16 +108,16 @@ export default function Home() {
             excellence she experienced at Special Grace Academy. Her journey is a true reflection of the impact our school makes in
             the lives of its students.
           </p>
-          <div className="mt-12 aspect-video overflow-hidden rounded-3xl bg-grace-900 shadow-xl ring-1 ring-grace-100">
-            <iframe
-              src={`https://www.youtube-nocookie.com/embed/${school.testimonialVideo.id}?rel=0`}
-              title={school.testimonialVideo.title}
-              loading="lazy"
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-              className="h-full w-full border-0"
-            />
+          <YouTubeEmbed id={school.testimonialVideo.id} title={school.testimonialVideo.title} className="mt-12 aspect-video" />
+
+          <h3 className="mt-20 text-center font-display text-2xl font-extrabold text-balance text-grace-900 sm:text-3xl">
+            Hear what our parents have to say about the impact of our school
+          </h3>
+          {/* Portrait videos side by side at every width, sized so both fit on screen together. */}
+          <div className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-4 sm:gap-8">
+            {school.parentVideos.map((v) => (
+              <YouTubeEmbed key={v.id} id={v.id} title={v.title} className="aspect-[1080/1662]" />
+            ))}
           </div>
         </div>
       </section>
